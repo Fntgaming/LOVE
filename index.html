@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>LUV YOU</title>
+  <style>
+    @font-face {
+      font-family: 'MiSans';
+      src: url('MiSans Latin VF.ttf') format('truetype');
+    }
+
+    body {
+      margin: 0;
+      background-color: black;
+      overflow: hidden;
+      font-family: 'MiSans', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .heart-container {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+
+    .heart {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 100px;
+      background: red;
+      transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+      animation: beat 1s infinite;
+      box-shadow: 0 0 30px red;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -50px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: 50px;
+    }
+
+    @keyframes beat {
+      0%, 100% {
+        transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+      }
+      50% {
+        transform: translate(-50%, -50%) rotate(-45deg) scale(1.2);
+      }
+    }
+
+    .luv-text {
+      position: absolute;
+      top: -50px;
+      color: white;
+      font-size: 24px;
+      text-shadow: 0 0 10px white;
+      font-family: 'MiSans', sans-serif;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+    .special {
+      color: white;
+      font-size: 20px;
+      text-shadow: 0 0 8px white;
+      margin-top: 120px;
+    }
+  </style>
+</head>
+<body>
+  <div class="heart-container">
+    <div class="heart"></div>
+  </div>
+  <div class="special">Speacial for you</div>
+
+  <script>
+    const createLuv = () => {
+      const text = document.createElement('div');
+      text.className = 'luv-text';
+      text.textContent = 'LUV YOU ❤️';
+      text.style.left = Math.random() * window.innerWidth + 'px';
+      text.style.animationDuration = 2 + Math.random() * 3 + 's';
+      document.body.appendChild(text);
+      setTimeout(() => text.remove(), 5000);
+    };
+
+    setInterval(createLuv, 200);
+  </script>
+</body>
+</html>
